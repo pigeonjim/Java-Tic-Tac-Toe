@@ -1,0 +1,65 @@
+package ticTacToe;
+
+import javafx.scene.control.Button;
+import javafx.scene.text.Font;
+import java.util.Arrays;
+
+public class GamePiece {
+    private Button button;
+    private int[] position = new int[2];
+    private String text, name;
+    GamePlay currentGame;
+    
+    public GamePiece(String name, int row, int col, GamePlay game){
+        button = new Button(" ");
+        button.setFont(Font.font("Monospaced", 40));
+        position[0] = row;
+        position[1] = col;
+        text = " ";
+        this.name = name;
+        currentGame = game;
+    }
+
+    public Button getButton() {
+        return button;
+    }
+
+    public int[] getPosition() {
+        return position;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setPosition(int[] position) {
+        this.position = position;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public String getName() {
+        return name;
+    }
+    
+    public boolean buttonClick(){
+        //for event handler
+        //check that button hasnt already been chosen
+        //returns true if game is over after this move
+        if(!button.getText().equals(" ")){
+            return false;
+        }
+            //input turn into button
+        button.setText(currentGame.getButtonPlayer()); 
+            //add move to game array
+        currentGame.addMove(position[0], position[1]);
+        if(currentGame.checkForWinner() || currentGame.getTurnsLeft() < 1){
+            currentGame.setCurrentPlayer("The end!");
+            return true;
+        }
+        return false;
+    }
+   
+}
