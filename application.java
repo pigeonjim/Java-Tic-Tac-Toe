@@ -10,10 +10,7 @@ public class TicTacToeApplication extends Application {
         
         GamePlay thisGame = new GamePlay();
         GameBoard board = new GameBoard(thisGame); 
-
-        //BorderPane gameLayout = new BorderPane();
-        //gameLayout.getChildren().add(board.getView());
-        
+       
         
         Scene view = new Scene(board.getView(),300,300);
                
